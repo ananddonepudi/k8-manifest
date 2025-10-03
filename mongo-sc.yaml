@@ -1,0 +1,10 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: mongo-storage
+provisioner: kubernetes.io/aws-ebs   # Change based on your environment
+parameters:
+  type: gp2                          # For AWS, use gp2/gp3
+  fsType: ext4
+reclaimPolicy: Retain                # Or Delete (to auto-delete PVs with PVC)
+volumeBindingMode: WaitForFirstConsumer
