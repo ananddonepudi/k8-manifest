@@ -1,0 +1,17 @@
+# pvc.yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  # The name of the PVC
+  name: my-pvc
+spec:
+  # Requests a specific StorageClass by name
+  storageClassName: standard-storage
+  # Defines how the volume can be mounted
+  accessModes:
+    # ReadWriteOnce: the volume can be mounted as read-write by a single node
+    - ReadWriteOnce
+  # Specifies the storage capacity requested
+  resources:
+    requests:
+      storage: 1Gi 

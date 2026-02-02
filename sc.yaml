@@ -1,10 +1,18 @@
+# storageclass.yaml
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: gp2-storage
-provisioner: kubernetes.io/aws-ebs
-parameters:
-  type: gp2       # You can use gp3 as well
-  fsType: ext4
+  # The name of the StorageClass
+  name: standard-storage
+# The provisioner depends on your Kubernetes environment (e.g., GKE, AKS, AWS, or on-premise solution).
+# Example for a generic CSI hostpath provisioner
+provisioner: k8s.io/minikube-hostpath
+# The ReclaimPolicy determines what happens to the underlying physical storage 
+# when the PVC is deleted (Retain, Delete)
 reclaimPolicy: Delete
-volumeBindingMode: WaitForFirstConsumer
+# Optional parameters specific to the provisioner can be added here
+# parameters:
+#   type: pd-standard 
+# The binding mode can be WaitForFirstConsumer to ensure the pod is scheduled to 
+# a node where the storage is available
+volumeBindingMode: Immediate

@@ -1,0 +1,20 @@
+# pod-with-pvc.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-app-pod
+spec:
+  containers:
+    - name: my-container
+      image: nginx:alpine
+      ports:
+        - containerPort: 80
+      volumeMounts:
+        # The name must match the volume name in the pod spec
+        - mountPath: "/usr/share/nginx/html"
+          name: task-pv-storage
+  volumes:
+    - name: task-pv-storage
+      persistentVolumeClaim:
+        # Refers to the name of the PVC created above
+        claimName: my-pvc
