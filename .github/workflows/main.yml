@@ -1,0 +1,16 @@
+name: CI Pipeline
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run build script
+        run: |
+              echo "Starting script..."
+              date
+              echo "Script finished"
+
